@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Recommendation System LAMA</title>
+  <link rel="stylesheet" href="static/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<body>
+  <div class="page">
+    <!-- Фон -->
+    <div class="background">
+      <img src="static/images/image.png" alt="Background" class="background-image">
+    </div>
+
+    <!-- Лама -->
+    <div class="llama-wrapper parallax" data-depth="0.4">
+      <img src="static/images/llama.png" alt="Llama" class="llama-image" id="parallax-lama">
+    </div>
+
+    <!-- Облако -->
+    <div class="llama-speech-bubble" id="parallax-bubble">
+      <p>Привет, я LAMA! Введи тип бизнеса, выбери точку на карте и я покажу, как у конкурентов обстоят дела! А также дам советы по развитию выбранного бизнеса</p>
+    </div>
+
+    <!-- Листья -->
+    <img src="static/images/listiki.png" class="listiki-image parallax" id="parallax-leaves" data-depth="0.2" data-rotate="240deg">
+    <img src="static/images/listiki1.png" class="listiki-image1 parallax" id="parallax-leaves2" data-depth="0.3" data-rotate="-50deg">
+
+    <!-- Контент -->
+    <div class="main-content" id="mainContent">
+      <div class="input-panel" id="inputPanel">
+        <h1 class="lama-title">LAMA</h1>
+        <p class="subtitle">Анализ конкурентов и советы по развитию бизнеса</p>
+        <div class="input-group">
+          <input id="inputUsername" type="text" placeholder="Введите тип бизнеса, например: кофейня">
+          <button id="getRecommendations">Получить информацию</button>
+        </div>
+      </div>
+
+      <div id="mapContainer" class="map-hidden">
+        <button id="confirmPoint" class="map-button confirm-button">Выбрать эту точку</button>
+        <button id="closeMap" class="map-button close-button">✕</button>
+        <div id="map"></div>
+        <div id="recommendations" class="recommendation"></div>
+      </div>
+    </div>
+
+    <div class="loader" id="loader"></div>
+    <div id="resultsContainer" class="results-hidden">
+      <div class="recommendation-block" id="recommendationBlock">
+        <h2>Рекомендации для улучшения бизнеса</h2>
+        <div id="recommendationContent"></div>
+      </div>
+      <div class="competitors-block" id="competitorsBlock">
+        <h2>Конкуренты рядом</h2>
+        <div id="competitorCards"></div>
+      </div>
+    </div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+    <script src="static/script.js"></script>
+  </div>
+</body>
+</html>
