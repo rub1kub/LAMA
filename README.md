@@ -40,9 +40,11 @@ python app.py
 
 ## ⚙️ Настройки `config.py`
 ```python
-YANDEX_API_KEY = "ваш_ключ"
-YANDEX_SEARCH_URL = "https://search-maps.yandex.ru/v1/"
-LLAMA_API_KEY = "ваш_ключ_от_NVIDIA"
+YANDEX_API_KEY = "ваш_ключ" брать тут: https://developer.tech.yandex.ru/services/12#
+LLAMA_API_KEY = "ваш_ключ_от_NVIDIA" брать тут: https://build.nvidia.com/nvidia/llama-3_1-nemotron-70b-instruct
+TELEGRAM_API_ID = 12345 брать тут: https://my.telegram.org/
+TELEGRAM_API_HASH = "..." брать тут: https://my.telegram.org/
+VK_ACCESS_TOKEN = "..." брать тут: https://vkhost.github.io/
 ```
 
 ## 🔮 План развития
