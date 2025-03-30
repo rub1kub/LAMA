@@ -9,10 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const button = document.getElementById('getRecommendations');
   const confirmBtn = document.getElementById('confirmPoint');
   const closeBtn = document.getElementById('closeMap');
+  const leaves1 = document.getElementById('parallax-leaves');
+  const leaves2 = document.getElementById('parallax-leaves2');
 
   const loader = document.getElementById('loader');
   const resultsContainer = document.getElementById('resultsContainer');
-  const recommendationBlock = document.getElementById('recommendationContent');
+  const recommendationContent = document.getElementById('recommendationContent');
   const competitorsBlock = document.getElementById('competitorCards');
 
   document.addEventListener('mousemove', (e) => {
@@ -66,7 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
     mapContainer.classList.remove('map-visible');
     llamaBubble.style.display = "none";
     mainContent.style.display = "none";
+    leaves2.style.display = "none";
+    leaves1.style.display = "none"; 
+
     loader.style.display = "block";
+
+    // Очищаем старый контент
+    recommendationContent.innerHTML = "";
+    competitorsBlock.innerHTML = "";
 
     await Promise.all([
       fetchRecommendations(),
@@ -74,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ]);
 
     loader.style.display = "none";
-    resultsContainer.classList.remove("results-hidden");
+    resultsContainer.style.display = "flex"; // Показать блок
   });
 
   function initMap() {
@@ -107,21 +116,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function fetchRecommendations() {
     const [lat, lon] = selectedCoordinates;
+    const businessType = document.getElementById('inputUsername').value || 'кофейня';
     console.log("Запрос рекомендаций...");
 
     try {
       const response = await fetch('/recommend', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lat, lon, type: "кофейня", business: {} })
+        body: JSON.stringify({ lat, lon, type: businessType, business: {} })
       });
       const data = await response.json();
       console.log("Ответ рекомендаций:", data);
 
       if (data.analysis) {
         const analysis = document.createElement('p');
-        analysis.innerText = data.analysis;
-        recommendationBlock.appendChild(analysis);
+        const formattedText = data.analysis
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/"([^"]+)"/g, '<em>"$1"</em>');
+        analysis.innerHTML = formattedText;
+        recommendationContent.appendChild(analysis);
       }
 
       if (Array.isArray(data.recommendations)) {
@@ -131,23 +144,24 @@ document.addEventListener('DOMContentLoaded', () => {
           li.innerText = rec;
           list.appendChild(li);
         });
-        recommendationBlock.appendChild(list);
+        recommendationContent.appendChild(list);
       }
     } catch (err) {
       console.error("Ошибка при получении рекомендаций:", err);
-      recommendationBlock.innerHTML = "<p>Ошибка загрузки рекомендаций.</p>";
+      recommendationContent.innerHTML = "<p>Ошибка загрузки рекомендаций.</p>";
     }
   }
 
   async function fetchCompetitors() {
     const [lat, lon] = selectedCoordinates;
+    const businessType = document.getElementById('inputUsername').value || 'кофейня';
     console.log("Запрос конкурентов...");
 
     try {
       const response = await fetch('/competitors', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lat, lon, type: "кофейня" })
+        body: JSON.stringify({ lat, lon, type: businessType })
       });
 
       const data = await response.json();
@@ -156,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const competitors = data.competitors || [];
 
       if (competitors.length === 0) {
-        competitorsBlock.innerHTML = "<p>Конкуренты не найдены.</p>";
+        competitorsBlock.innerHTML = "<p>🦙: «Хмм... я не нашла конкурентов рядом! Похоже, ты можешь стать первым!»</p>";
         return;
       }
 
@@ -182,14 +196,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (biz.vk) {
           const vk = document.createElement('p');
-          vk.innerHTML = `<a href="${biz.vk}" target="_blank">VK</a>`;
+          vk.innerHTML = `<a href="${biz.vk}" target="_blank"><i class="fab fa-vk"></i> VK</a>`;
           card.appendChild(vk);
         }
+
         if (biz.telegram) {
           const tg = document.createElement('p');
-          tg.innerHTML = `<a href="${biz.telegram}" target="_blank">Telegram</a>`;
+          tg.innerHTML = `<a href="${biz.telegram}" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>`;
           card.appendChild(tg);
         }
+
         competitorsBlock.appendChild(card);
       });
     } catch (err) {
@@ -198,3 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+
+

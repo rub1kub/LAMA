@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify, render_template, session
 import os
 import logging
-
 from analysis_client import analyze_business
 from maps_client import get_nearby_businesses
 from telegram_client import get_telegram_posts

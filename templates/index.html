@@ -2,20 +2,22 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Recommendation System LAMA</title>
-  <link rel="stylesheet" href="static/style.css">
+  <title>LAMA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
   <div class="page">
     <!-- Фон -->
     <div class="background">
-      <img src="static/images/image.png" alt="Background" class="background-image">
+      <img src="{{ url_for('static', filename='images/image.png') }}" alt="Background" class="background-image">
     </div>
 
     <!-- Лама -->
     <div class="llama-wrapper parallax" data-depth="0.4">
-      <img src="static/images/llama.png" alt="Llama" class="llama-image" id="parallax-lama">
+      <img src="{{ url_for('static', filename='images/llama.png') }}" alt="Llama" class="llama-image" id="parallax-lama">
     </div>
 
     <!-- Облако -->
@@ -24,8 +26,8 @@
     </div>
 
     <!-- Листья -->
-    <img src="static/images/listiki.png" class="listiki-image parallax" id="parallax-leaves" data-depth="0.2" data-rotate="240deg">
-    <img src="static/images/listiki1.png" class="listiki-image1 parallax" id="parallax-leaves2" data-depth="0.3" data-rotate="-50deg">
+    <img src="{{ url_for('static', filename='images/listiki.png') }}" class="listiki-image parallax" id="parallax-leaves" data-depth="0.2" data-rotate="240deg">
+    <img src="{{ url_for('static', filename='images/listiki1.png') }}" class="listiki-image1 parallax" id="parallax-leaves2" data-depth="0.3" data-rotate="-50deg">
 
     <!-- Контент -->
     <div class="main-content" id="mainContent">
@@ -33,7 +35,7 @@
         <h1 class="lama-title">LAMA</h1>
         <p class="subtitle">Анализ конкурентов и советы по развитию бизнеса</p>
         <div class="input-group">
-          <input id="inputUsername" type="text" placeholder="Введите тип бизнеса, например: кофейня">
+          <input id="inputUsername" type="text" placeholder="Введите тип бизнеса, например: аптека">
           <button id="getRecommendations">Получить информацию</button>
         </div>
       </div>
@@ -46,8 +48,13 @@
       </div>
     </div>
 
+    
+
+  
+
+
     <div class="loader" id="loader"></div>
-    <div id="resultsContainer" class="results-hidden">
+    <div class="resultsContainer" id="resultsContainer" class="results-hidden">
       <div class="recommendation-block" id="recommendationBlock">
         <h2>Рекомендации для улучшения бизнеса</h2>
         <div id="recommendationContent"></div>
@@ -59,7 +66,7 @@
     </div>
 
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
-    <script src="static/script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
   </div>
 </body>
 </html>
