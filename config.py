@@ -1,19 +1,19 @@
 # config.py
 
 # Яндекс
-YANDEX_API_KEY = "23130654-96eb-4b3a-95f4-cf6a7344b764"       
+YANDEX_API_KEY = "23130654-96eb..."       
 YANDEX_SEARCH_URL = "https://search-maps.yandex.ru/v1/"
 YANDEX_MAPS_JS_KEY = "YOUR_YANDEX_MAPS_JS_KEY" 
 
 # VK
 VK_API_VERSION = "5.131"    
-VK_ACCESS_TOKEN = "vk1.a.2sNOZGmp1HJaA9uX2MjrAa340YTp-E2i_wZxIuj0F7XE6ROWbmL85MxrMyyb4JQSzlWf0orF9QSGifOTXWWaeLtDMQPhz6nn7gWEat9JXmGW5iMFo4QgAO1d_F8xijqdbpqbI1WT5ppJrH8G6XXoPAYjMVbxRmQNIjB7ki_Sb9mi41G-6OfUUsxFnDshwb3sDmg8eWvdb8BeVULTvcFAbQ"
+VK_ACCESS_TOKEN = "vk1.a.2sNOZGmp1HJaA9uX2MjrAa340YTp-E2i_wZxIuj0..."
 
 # Telegram 
-TELEGRAM_API_ID = 22647730                         
-TELEGRAM_API_HASH = "c234b5e50d543b11a2ca7597162b18c7"   
-TELEGRAM_PHONE = "+527296692704" 
+TELEGRAM_API_ID = 123456789                     
+TELEGRAM_API_HASH = "c234b5e50d543b11a2ca759..."   
+TELEGRAM_PHONE = "+5272966..." 
 
 # Llama / OpenAI
-LLAMA_API_KEY = "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"      
+LLAMA_API_KEY = "nvapi-HRukp-0gDgONMmcaXDJ8Q..."      
 
